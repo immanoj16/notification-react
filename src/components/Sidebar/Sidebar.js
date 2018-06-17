@@ -9,7 +9,7 @@ const CustomLink = ({ to, children }) => {
       path={to.pathname}
       children={({ match }) => (
         <li style={{listStyleType: 'none', fontWeight: match ? 'bold' : 'normal'}}>
-          <Link to={to}>{children}</Link>
+          <LinkStyle to={to}>{children}</LinkStyle>
         </li>
       )}
     />
@@ -50,6 +50,14 @@ const List = styled.ul`
   padding: 10px;
   flex-direction: column;
   padding: 0;
+`;
+
+const LinkStyle = styled(Link)`
+  color: #34495e;
+  text-decoration: none;
+  &:hover {
+    color: #718daa
+  }
 `;
 
 export default Sidebar;
