@@ -11,8 +11,6 @@ class SidebarContainer extends Component {
 
   render() {
 
-    console.log(this.props.users);
-
     const { match, location } = this.props;
     return (
       <Container>
@@ -39,9 +37,9 @@ class SidebarContainer extends Component {
                 <Medium>{name}</Medium>
                 <Header>{uid}</Header>
                 <ButtonGroup>
-                  <ModalContainer receiverId='sfjslfs' title='Assign a Task' />
-                  <ModalContainer receiverId={uid} title='Add a Reminder' />
-                  <ModalContainer receiverId={uid} title='Send Notification' />
+                  <ModalContainer receiverId={uid} type='task' title='Assign a Task' />
+                  <ModalContainer receiverId={uid} type='reminder' title='Add a Reminder' />
+                  <ModalContainer receiverId={uid} type='notification' title='Send Notification' />
                 </ButtonGroup>
               </Panel>
             )

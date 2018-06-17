@@ -35,7 +35,7 @@ class Notifications extends Component {
     return (
       <Modal style={style} innerRef={this.modal}>
         <Div>
-          <NotificationHeader notificationCount={Object.keys(this.props.notifications).length} />
+          <NotificationHeader notifications={this.props.notifications} />
           <NotificationList handleRemoveNotification={this.handleRemoveNotification} notifications={this.props.notifications} />
         </Div>
       </Modal>

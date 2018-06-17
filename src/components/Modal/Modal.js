@@ -17,7 +17,7 @@ ReactModal.setAppElement('#root');
 
 export default function Modal (props) {
 
-  const {title, text, isSubmitDisabled, openModal, closeModal, isOpen, updateText, submitDuck} = props;
+  const {title, text, isSubmitDisabled, openModal, closeModal, isOpen, updateText, submitText} = props;
 
   return (
     <DartButton onClick={openModal}>
@@ -37,7 +37,7 @@ export default function Modal (props) {
         </InputContainer>
         <SubmitButton
           disabled={isSubmitDisabled}
-          onClick={submitDuck}>
+          onClick={submitText}>
             Submit
         </SubmitButton>
       </ReactModal>

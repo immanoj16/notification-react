@@ -2,20 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Notification = ({notification, handleRemoveNotification}) => {
-  const { notificationId, text, timestamp } = notification;
+  const { notificationId, text, timestamp, type } = notification;
 
-  // let view = 'View ';
-  // if (type === 'notification') {
-  //   view += 'Notification >';
-  // }
+  let view = 'View ';
+  if (type === 'notification') {
+    view += 'Notification >';
+  }
 
-  // if (type === 'reminder') {
-  //   view += 'Reminder >';
-  // }
+  if (type === 'reminder') {
+    view += 'Reminder >';
+  }
 
-  // if (type === 'task') {
-  //   view += 'Task >'
-  // }
+  if (type === 'task') {
+    view += 'Task >'
+  }
 
   return (
     <Div>
@@ -24,7 +24,7 @@ const Notification = ({notification, handleRemoveNotification}) => {
         <Time>Just now</Time>
         <p>{text}</p>
         <p>{timestamp}</p>
-        {/* <View>{view}</View> */}
+        <View>{view}</View>
       </Content>
     </Div>
   )

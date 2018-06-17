@@ -20,8 +20,6 @@ const NavLinks = ({isAuthed, openModal, src}) => {
 
 const Navbar = (props) => {
 
-  console.log(props);
-
   const { openModal, isOpen, isAuthed } = props;
 
   const src = isOpen ? notification_white : notification_black;

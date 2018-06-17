@@ -27,8 +27,8 @@ class ModalContainer extends React.Component {
     this.setState({ text: newText })
   }
 
-  submitDuck = (e) => {
-    this.props.sendAndReceiveNotificationHelper(this.props.receiverId, formatNotification(this.state.text, this.props.user.uid))
+  submitText = (e) => {
+    this.props.sendAndReceiveNotificationHelper(this.props.receiverId, formatNotification(this.state.text, this.props.user.uid, this.props.type))
       .then(() => {
         this.closeModal(e);
       })
@@ -46,7 +46,7 @@ class ModalContainer extends React.Component {
         openModal={this.openModal}
         closeModal={this.closeModal}
         updateText={this.updateText}
-        submitDuck={this.submitDuck}
+        submitText={this.submitText}
         isSubmitDisabled={textLength <= 0 || textLength > 140}
       />
     )

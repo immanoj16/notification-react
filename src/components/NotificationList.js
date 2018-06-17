@@ -1,16 +1,11 @@
 import React from 'react';
 
 import Notification from './Notification';
+import { objectToArray } from '../helpers/utils';
 
 const NotificationList = ({notifications, handleRemoveNotification}) => {
 
-  const notificationArray = Object.keys(notifications)
-    .reduce((array, key) => {
-      array.push(notifications[key]);
-      return array;
-    }, []);
-
-  console.log(notificationArray);
+  const notificationArray = objectToArray(notifications);
 
   return (
     <div>
