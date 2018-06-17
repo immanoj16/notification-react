@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import NotificationList from '../components/NotificationList';
 import NotificationHeader from '../components/NotificationHeader';
 import { closeNotificationModal } from '../actions/notificationModalActions';
+import { removeAndHandleNotification } from '../actions/notificationActions';
 
 class Notifications extends Component {
 
@@ -15,8 +16,8 @@ class Notifications extends Component {
     this.modal = React.createRef();
   }
 
-  handleRemoveNotification = (id) => {
-    // this.props.removeNotification(id);
+  handleRemoveNotification = (notificationId) => {
+    this.props.removeAndHandleNotification(this.props.authedId, notificationId)
   };
 
   render() {
@@ -67,11 +68,12 @@ const Div = styled.div`
 
 const mapStateToProps = (state) => ({
   notifications: state.notifications.received,
-  isOpen: state.notificationModal.isOpen
+  isOpen: state.notificationModal.isOpen,
+  authedId: state.users.authedId
 })
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ closeNotificationModal }, dispatch)
+  return bindActionCreators({ closeNotificationModal, removeAndHandleNotification }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

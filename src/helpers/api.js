@@ -29,7 +29,7 @@ export const fetchNotification = (uid) => {
 }
 
 export const removeNotification = (uid, notificationId) => {
-  ref.child(`notfiication/${uid}/received/${notificationId}`).remove();
+  ref.child(`notification/${uid}/received/${notificationId}`).remove();
 }
 
 // users

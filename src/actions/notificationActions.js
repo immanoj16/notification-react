@@ -1,14 +1,5 @@
 import { sendNotification, fetchNotification, removeNotification } from '../helpers/api';
-import { SEND_AND_RECEIVE_NOTIFICATION, FETCH_NOTIFICATIONS } from '../constants';
-
-const sendAndReceiveNotification = (senderId, receiverId, notification) => {
-  return {
-    type: SEND_AND_RECEIVE_NOTIFICATION,
-    senderId,
-    receiverId,
-    notification
-  }
-};
+import { FETCH_NOTIFICATIONS } from '../constants';
 
 const fetchNotifications = (notification) => {
   return {
@@ -18,6 +9,7 @@ const fetchNotifications = (notification) => {
 };
 
 export const removeAndHandleNotification = (uid, notificationId) => {
+  console.log(uid, notificationId)
   return dispatch => {
     removeNotification(uid, notificationId);
     dispatch(fetchAndHandleNotification(uid));

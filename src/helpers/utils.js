@@ -44,6 +44,15 @@ const countHelper = (array, regex) => {
 }
 
 export const notificationCountHelper = (notifications) => {
+
+  if (!notifications) {
+    return {
+      notificationCount: 0,
+      taskCount: 0,
+      reminderCount: 0
+    }
+  }
+
   const notificationArray = objectToArray(notifications);  
   return {
     notificationCount: countHelper(notificationArray, 'notification'),
@@ -53,6 +62,11 @@ export const notificationCountHelper = (notifications) => {
 }
 
 export const objectToArray = (object) => {
+
+  if (!object) {
+    return [];
+  }
+
   return Object.keys(object)
     .reduce((array, key) => {
       array.push(object[key]);
