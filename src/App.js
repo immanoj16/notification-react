@@ -18,6 +18,7 @@ import LogoutContainer from './containers/Logout/LogoutContainer';
 import './App.css';
 import PrivateRoute from './components/common/PrivateRoute';
 import PublicRoute from './components/common/PublicRoute';
+import { firebaseListener } from './helpers/firebase-listener';
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now());
         this.props.fetchAndHandleNotification(user.uid);
         this.props.fetchingUsers();
+        firebaseListener();
       } else {
         this.props.removeFetchingUser();
       }

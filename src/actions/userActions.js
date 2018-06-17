@@ -22,7 +22,7 @@ function fetchingUser () {
   }
 }
 
-const fetchAllUsers = (users) => {
+export const fetchAllUsers = (users) => {
   return {
     type: FETCH_ALL_USERS,
     users

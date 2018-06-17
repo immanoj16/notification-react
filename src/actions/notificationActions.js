@@ -1,7 +1,7 @@
 import { sendNotification, fetchNotification, removeNotification } from '../helpers/api';
 import { FETCH_NOTIFICATIONS } from '../constants';
 
-const fetchNotifications = (notification) => {
+export const fetchNotifications = (notification) => {
   return {
     type: FETCH_NOTIFICATIONS,
     notification
