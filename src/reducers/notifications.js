@@ -1,8 +1,10 @@
-import { SEND_AND_RECEIVE_NOTIFICATION, REMOVE_NOTIFICATION } from '../constants';
+import { SEND_AND_RECEIVE_NOTIFICATION, REMOVE_NOTIFICATION, FETCH_NOTIFICATIONS } from '../constants';
 
 const initialState = {
   isFetching: false,
-  error: ''
+  error: '',
+  sent: {},
+  received: {}
 }
 
 const notification = (state=initialState, action) => {
@@ -16,7 +18,16 @@ const notification = (state=initialState, action) => {
 
       return {
         ...state,
-        [action.notification.notificationId]: newNotification
+        sent: {
+          ...state.sent,
+          [action.notification.notificationId]: newNotification
+        }
+      }
+    case FETCH_NOTIFICATIONS:
+      return {
+        ...state,
+        sent: action.notification.sent,
+        received: action.notification.received
       }
     case REMOVE_NOTIFICATION:
       const newState = state.filter(({ id }) => id !== action.id);

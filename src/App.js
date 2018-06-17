@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as userActionCreators from './actions/userActions';
+import { fetchAndHandleNotification } from './actions/notificationActions';
 import { formatUserInfo } from './helpers/utils';
 import { firebaseAuth } from './config/constants';
 import Navbar from './containers/Navbar';
@@ -27,10 +28,12 @@ class App extends Component {
         const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid);
         this.props.authUser(user.uid);
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now());
+        console.log(this.props);
+        this.props.fetchAndHandleNotification(user.uid);
       } else {
         this.props.removeFetchingUser();
       }
-    })
+    });
   }
 
   componentWillUnmount() {
@@ -73,7 +76,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(userActionCreators, dispatch)
+  return bindActionCreators({...userActionCreators, fetchAndHandleNotification}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

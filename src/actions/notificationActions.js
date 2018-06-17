@@ -1,11 +1,18 @@
-import { sendNotification } from '../helpers/api';
-import { SEND_AND_RECEIVE_NOTIFICATION, REMOVE_NOTIFICATION } from '../constants';
+import { sendNotification, fetchNotification } from '../helpers/api';
+import { SEND_AND_RECEIVE_NOTIFICATION, REMOVE_NOTIFICATION, FETCH_NOTIFICATIONS } from '../constants';
 
-export const sendAndReceiveNotification = (senderId, receiverId, notification) => {
+const sendAndReceiveNotification = (senderId, receiverId, notification) => {
   return {
     type: SEND_AND_RECEIVE_NOTIFICATION,
     senderId,
     receiverId,
+    notification
+  }
+};
+
+const fetchNotifications = (notification) => {
+  return {
+    type: FETCH_NOTIFICATIONS,
     notification
   }
 };
@@ -27,3 +34,10 @@ export const sendAndReceiveNotificationHelper = (receiverId, notification) => {
       .catch(err => console.warn('Error in notification', err))
   }
 }
+
+export const fetchAndHandleNotification = (uid) => {
+  return dispatch => {
+    fetchNotification(uid)
+      .then(notification => dispatch(fetchNotifications(notification)))
+  }
+} 
