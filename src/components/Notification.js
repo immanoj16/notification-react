@@ -1,29 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
-const Notification = ({notification, handleRemoveNotification}) => {
-  const { notificationId, text, timestamp, type } = notification;
+const Notification = ({name, notification, handleRemoveNotification}) => {
+  const { notificationId, timestamp, type } = notification;
+
+  console.log(name);
 
   let view = 'View ';
+  let input;
   if (type === 'notification') {
     view += 'Notification >';
+    input = `${name} sent a notification`;
   }
 
   if (type === 'reminder') {
     view += 'Reminder >';
+    input = `${name} added a reminder`;
   }
 
   if (type === 'task') {
-    view += 'Task >'
+    view += 'Task >';
+    input = `${name} has assigned you to a task`;
   }
 
   return (
     <Div>
       <Span onClick={() => handleRemoveNotification(notificationId)}>&times;</Span>
       <Content>
-        <Time>Just now</Time>
-        <p>{text}</p>
-        <p>{timestamp}</p>
+        <Time>{moment(timestamp).fromNow()}</Time>
+        <div style={{lineHeight: '1em'}}>{input}</div>
         <View>{view}</View>
       </Content>
     </Div>
@@ -34,7 +40,6 @@ const Div = styled.div`
   border: 1px solid #D8D8D8;
   border-top: none;
   height: 120px;
-  line-height: .5em;
   width: 100%;
 `;
 
@@ -61,12 +66,12 @@ const Content = styled.div`
   padding-top: 25px;
 `;
 
-const Time = styled.span`
+const Time = styled.div`
   color: #000000;
   font-weight: bold;
 `;
 
-const View = styled.span`
+const View = styled.div`
   font-size: 13px;
   color: blue;
   cursor: pointer;

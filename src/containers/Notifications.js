@@ -37,7 +37,7 @@ class Notifications extends Component {
       <Modal style={style} innerRef={this.modal}>
         <Div>
           <NotificationHeader notifications={this.props.notifications} />
-          <NotificationList handleRemoveNotification={this.handleRemoveNotification} notifications={this.props.notifications} />
+          <NotificationList users={this.props.users} handleRemoveNotification={this.handleRemoveNotification} notifications={this.props.notifications} />
         </Div>
       </Modal>
     )
@@ -69,7 +69,8 @@ const Div = styled.div`
 const mapStateToProps = (state) => ({
   notifications: state.notifications.received,
   isOpen: state.notificationModal.isOpen,
-  authedId: state.users.authedId
+  authedId: state.users.authedId,
+  users: state.users.users
 })
 
 const mapDispatchToProps = (dispatch) => {

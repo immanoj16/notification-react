@@ -4,15 +4,24 @@ import Notification from './Notification';
 import { objectToArray } from '../helpers/utils';
 import styled from 'styled-components';
 
-const NotificationList = ({notifications, handleRemoveNotification}) => {
+const NotificationList = ({users, notifications, handleRemoveNotification}) => {
 
-  const notificationArray = objectToArray(notifications);
+  const notificationArrayUnsorted = objectToArray(notifications);
+
+  const notificationArray = notificationArrayUnsorted.sort((a, b) => {
+    return a.timestamp < b.timestamp;
+  })
 
   return (
     <div>
       {notificationArray.map((notification) => {
+
+        // let name = 'No name';
+        const { name } = users.find(({ uid }) => uid === notification.uid);
+
         return (
           <Notification
+            name={name}
             handleRemoveNotification={handleRemoveNotification}
             key={notification.notificationId}
             notification={notification}
