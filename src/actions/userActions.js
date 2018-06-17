@@ -1,6 +1,7 @@
-import { AUTH_USER, UNAUTH_USER, FETCHING_USER, FETCHING_USER_FAILURE, FETCHING_USER_SUCCESS, REMOVE_FETCHING_USER } from '../constants';
+import { AUTH_USER, UNAUTH_USER, FETCHING_USER, FETCH_ALL_USERS, FETCHING_USER_FAILURE, FETCHING_USER_SUCCESS, REMOVE_FETCHING_USER } from '../constants';
 import auth, { logout, saveUser } from '../helpers/auth';
 import { formatUserInfo } from '../helpers/utils';
+import { fetchUsers } from '../helpers/api';
 
 export function authUser (uid) {
   return {
@@ -18,6 +19,13 @@ function unauthUser () {
 function fetchingUser () {
   return {
     type: FETCHING_USER,
+  }
+}
+
+const fetchAllUsers = (users) => {
+  return {
+    type: FETCH_ALL_USERS,
+    users
   }
 }
 
@@ -65,3 +73,10 @@ export const logoutAndUnAuth = () => {
     dispatch(unauthUser());
   }
 };
+
+export const fetchingUsers = () => {
+  return dispatch => {
+    fetchUsers()
+      .then(users => dispatch(fetchAllUsers(users)));
+  }
+}

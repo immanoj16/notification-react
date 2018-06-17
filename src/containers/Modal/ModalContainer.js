@@ -28,7 +28,7 @@ class ModalContainer extends React.Component {
   }
 
   submitDuck = (e) => {
-    this.props.sendAndReceiveNotificationHelper(this.props.receiverId, formatNotification(this.state.text))
+    this.props.sendAndReceiveNotificationHelper(this.props.receiverId, formatNotification(this.state.text, this.props.user.uid))
       .then(() => {
         this.closeModal(e);
       })

@@ -28,6 +28,10 @@ export const fetchNotification = (uid) => {
   })
 }
 
+export const removeNotification = (uid, notificationId) => {
+  ref.child(`notfiication/${uid}/received/${notificationId}`).remove();
+}
+
 // Tasks
 
 const senderTask = (senderId, task, taskId) => {
@@ -64,4 +68,14 @@ export const sendReminder = (reminder, senderId, recieverId) => {
     senderReminder(senderId, reminder, reminderId),
     receiveReminder(recieverId, reminder, reminderId)
   ]).then(() => ({...reminder, reminderId}))
+}
+
+// users
+
+export const fetchUsers = () => {
+  return new Promise((resolve, reject) => {
+    ref.child('users').on('value', snapshot => {
+      resolve(snapshot.val());
+    })
+  })
 }

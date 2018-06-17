@@ -30,6 +30,7 @@ class App extends Component {
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now());
         console.log(this.props);
         this.props.fetchAndHandleNotification(user.uid);
+        this.props.fetchingUsers();
       } else {
         this.props.removeFetchingUser();
       }

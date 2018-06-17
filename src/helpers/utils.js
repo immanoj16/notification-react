@@ -6,9 +6,14 @@ export const formatUserInfo = (name, avatar, uid) => {
   }
 }
 
-export const formatNotification = (text) => {
-  return {
-    text,
-    timestamp: Date.now()
+export const formatNotification = (text, uid) => {
+  if (uid) {
+    return {
+      text,
+      uid,
+      timestamp: Date.now()
+    }
+  } else {
+    return {}
   }
 }

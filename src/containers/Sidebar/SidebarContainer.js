@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -10,30 +9,9 @@ import ModalContainer from '../Modal/ModalContainer';
 
 class SidebarContainer extends Component {
 
-  state = {
-    users: []
-  }
-
-  componentDidMount() {
-    const userRef = firebase.database().ref('users');
-
-    userRef.on('value', snapshot => {
-      const usersObject = snapshot.val();
-
-      // add this
-      // .filter(key => usersObject[key].uid === this.props.user[key])
-
-      const users = Object.keys(usersObject)
-        .reduce((users, key) => {
-          users.push(usersObject[key]);
-          return users;
-        }, []);
-
-      this.setState({users});
-    })
-  }
-
   render() {
+
+    console.log(this.props.users);
 
     const { match, location } = this.props;
     return (
@@ -41,7 +19,7 @@ class SidebarContainer extends Component {
         <Sidebar
           loading={false}
           title='Users'
-          list={this.state.users.map(user => user.name)}
+          list={this.props.users.map(user => user.name)}
           {...this.props}
         />
 
@@ -49,24 +27,26 @@ class SidebarContainer extends Component {
           ? <Instruction>Select a User to send notification</Instruction>
           : null}
 
-        <Route path={`${match.url}/:username`} render={({ match }) => {
-          const user = this.state.users.find(user => slug(user.name) === match.params.username);
-
-          const { name, avatar, uid } = user;
-
-          return (
-            <Panel>
-              <Img src={`${avatar}`} alt={`${name}'s avatar`}/>
-              <Medium>{name}</Medium>
-              <Header>{uid}</Header>
-              <ButtonGroup>
-                <ModalContainer receiverId='sfjslfs' title='Assign a Task' />
-                <ModalContainer receiverId={uid} title='Add a Reminder' />
-                <ModalContainer receiverId={uid} title='Send Notification' />
-              </ButtonGroup>
-            </Panel>
-          )
-        }} />
+        {this.props.users.length ? 
+          <Route path={`${match.url}/:username`} render={({ match }) => {
+            const user = this.props.users.find(user => slug(user.name) === match.params.username);
+  
+            const { name, avatar, uid } = user;
+  
+            return (
+              <Panel>
+                <Img src={`${avatar}`} alt={`${name}'s avatar`}/>
+                <Medium>{name}</Medium>
+                <Header>{uid}</Header>
+                <ButtonGroup>
+                  <ModalContainer receiverId='sfjslfs' title='Assign a Task' />
+                  <ModalContainer receiverId={uid} title='Add a Reminder' />
+                  <ModalContainer receiverId={uid} title='Send Notification' />
+                </ButtonGroup>
+              </Panel>
+            )
+          }} />  
+          : null}
 
       </Container>
     )
@@ -116,7 +96,7 @@ const ButtonGroup = styled.div`
 `;
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  users: state.users.users
 })
 
 export default connect(mapStateToProps)(SidebarContainer);

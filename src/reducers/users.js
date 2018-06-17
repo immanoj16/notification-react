@@ -1,4 +1,4 @@
-import { AUTH_USER, UNAUTH_USER, FETCHING_USER, FETCHING_USER_FAILURE, FETCHING_USER_SUCCESS, REMOVE_FETCHING_USER } from '../constants';
+import { AUTH_USER, UNAUTH_USER, FETCHING_USER, FETCH_ALL_USERS, FETCHING_USER_FAILURE, FETCHING_USER_SUCCESS, REMOVE_FETCHING_USER } from '../constants';
 
 const initialUserState = {
   lastUpdated: 0,
@@ -27,6 +27,7 @@ const initialState = {
   error: '',
   isAuthed: false,
   authedId: '',
+  users: []
 }
 
 export default function notificationModalusers (state = initialState, action) {
@@ -71,6 +72,16 @@ export default function notificationModalusers (state = initialState, action) {
           isFetching: false,
           error: '',
           [action.uid]: user(state[action.uid], action),
+        }
+      case FETCH_ALL_USERS:
+      const users = Object.keys(action.users)
+        .reduce((users, key) => {
+          users.push(action.users[key]);
+          return users;
+        }, []);
+        return {
+          ...state,
+          users
         }
     default :
       return state

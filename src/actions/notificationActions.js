@@ -1,5 +1,5 @@
-import { sendNotification, fetchNotification } from '../helpers/api';
-import { SEND_AND_RECEIVE_NOTIFICATION, REMOVE_NOTIFICATION, FETCH_NOTIFICATIONS } from '../constants';
+import { sendNotification, fetchNotification, removeNotification } from '../helpers/api';
+import { SEND_AND_RECEIVE_NOTIFICATION, FETCH_NOTIFICATIONS } from '../constants';
 
 const sendAndReceiveNotification = (senderId, receiverId, notification) => {
   return {
@@ -17,19 +17,19 @@ const fetchNotifications = (notification) => {
   }
 };
 
-export const removeNotification = (id) => {
-  return {
-    type: REMOVE_NOTIFICATION,
-    id
+export const removeAndHandleNotification = (uid, notificationId) => {
+  return dispatch => {
+    removeNotification(uid, notificationId);
+    dispatch(fetchAndHandleNotification(uid));
   }
-};
+}
 
 export const sendAndReceiveNotificationHelper = (receiverId, notification) => {
   return (dispatch, getState) => {
     const senderId = getState().users.authedId;
     return sendNotification(notification, senderId, receiverId)
       .then((notificationWithId) => {
-        dispatch(sendAndReceiveNotification(senderId, receiverId, notificationWithId));
+        dispatch(fetchAndHandleNotification(senderId))
       })
       .catch(err => console.warn('Error in notification', err))
   }
