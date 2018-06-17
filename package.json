@@ -1,0 +1,27 @@
+{
+  "name": "notification",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "firebase": "^5.0.4",
+    "prop-types": "^15.6.1",
+    "radium": "^0.24.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-modal": "^3.4.5",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "slug": "^0.9.1",
+    "styled-components": "^3.3.2",
+    "ws": "^5.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
