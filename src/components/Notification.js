@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-const Notification = ({name, notification, handleRemoveNotification}) => {
+const Notification = ({name, notification, handleRemoveNotification, showNotification}) => {
   const { notificationId, timestamp, type } = notification;
 
   console.log(name);
@@ -30,7 +30,7 @@ const Notification = ({name, notification, handleRemoveNotification}) => {
       <Content>
         <Time>{moment(timestamp).fromNow()}</Time>
         <div style={{lineHeight: '1em'}}>{input}</div>
-        <View>{view}</View>
+        <View onClick={() => showNotification(notificationId)}>{view}</View>
       </Content>
     </Div>
   )

@@ -4,7 +4,7 @@ import Notification from './Notification';
 import { objectToArray } from '../helpers/utils';
 import styled from 'styled-components';
 
-const NotificationList = ({users, notifications, handleRemoveNotification}) => {
+const NotificationList = ({users, notifications, handleRemoveNotification, showNotification}) => {
 
   const notificationArrayUnsorted = objectToArray(notifications);
 
@@ -12,7 +12,7 @@ const NotificationList = ({users, notifications, handleRemoveNotification}) => {
     return a.timestamp < b.timestamp;
   })
 
-  return (
+  return notificationArray.length && users ? (
     <div>
       {notificationArray.map((notification) => {
 
@@ -25,6 +25,7 @@ const NotificationList = ({users, notifications, handleRemoveNotification}) => {
             handleRemoveNotification={handleRemoveNotification}
             key={notification.notificationId}
             notification={notification}
+            showNotification={showNotification}
           />
         )
       })}
@@ -32,7 +33,7 @@ const NotificationList = ({users, notifications, handleRemoveNotification}) => {
         <Note>No Notification available</Note>  
       }
     </div>
-  )
+  ) : null
 };
 
 const Note = styled.div`

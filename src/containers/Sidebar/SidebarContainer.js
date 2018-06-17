@@ -35,7 +35,7 @@ class SidebarContainer extends Component {
               <Panel>
                 <Img src={`${avatar}`} alt={`${name}'s avatar`}/>
                 <Medium>{name}</Medium>
-                <Header>{uid}</Header>
+                <p>{uid}</p>
                 <ButtonGroup>
                   <ModalContainer receiverId={uid} type='task' title='Assign a Task' />
                   <ModalContainer receiverId={uid} type='reminder' title='Add a Reminder' />
@@ -54,6 +54,15 @@ class SidebarContainer extends Component {
 const Container = styled.div`
   display: flex;
   padding: 20px;
+
+  @media (max-width: 769px) {
+    margin-top: 200px;
+    flex-direction: column;
+  }
+
+  @media (min-width: 769px) {
+    margin-top: 150px;
+  }
 `;
 
 const Instruction = styled.div`

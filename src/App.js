@@ -14,6 +14,7 @@ import HomeContainer from './containers/Home/HomeContainer';
 import AuthenticateContainer from './containers/Authenticate/AuthenticateContainer';
 import DashboardContainer from './containers/Dashboard/DashboardContainer';
 import LogoutContainer from './containers/Logout/LogoutContainer';
+import SingleNotificationContainer from './containers/SingleNotification/SingleNotificationContainer';
 
 import './App.css';
 import PrivateRoute from './components/common/PrivateRoute';
@@ -55,6 +56,7 @@ class App extends Component {
                 <PublicRoute path='/auth' component={AuthenticateContainer} />
                 <Route path='/logout' component={LogoutContainer} />
                 <PrivateRoute path='/dashboard' component={DashboardContainer} />
+                <Route path='/notification/:notificationId' component={SingleNotificationContainer} />
                 <Route render={() => <h3>No Match</h3>} />
               </Switch>
             </InnerContainer>
@@ -70,11 +72,16 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   max-width: 900px;
   margin: 60px auto;
+
+  @media(max-width: 769px) {
+    margin-top: 100px;
+  }
 `;
 
 const mapStateToProps = (state) => ({
   isAuthed: state.users.isAuthed,
-  isFetching: state.users.isFetching
+  isFetching: state.users.isFetching,
+  notifications: state.notifications.received
 })
 
 const mapDispatchToProps = (dispatch) => {

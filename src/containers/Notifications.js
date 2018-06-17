@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import { connect, } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -20,6 +21,11 @@ class Notifications extends Component {
     this.props.removeAndHandleNotification(this.props.authedId, notificationId)
   };
 
+  showNotification = (notificationId) => {
+    this.props.closeNotificationModal();
+    this.props.history.push(`/notification/${notificationId}`);
+  }
+
   render() {
 
     const { isOpen } = this.props;
@@ -37,7 +43,7 @@ class Notifications extends Component {
       <Modal style={style} innerRef={this.modal}>
         <Div>
           <NotificationHeader notifications={this.props.notifications} />
-          <NotificationList users={this.props.users} handleRemoveNotification={this.handleRemoveNotification} notifications={this.props.notifications} />
+          <NotificationList showNotification={this.showNotification} users={this.props.users} handleRemoveNotification={this.handleRemoveNotification} notifications={this.props.notifications} />
         </Div>
       </Modal>
     )
@@ -77,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ closeNotificationModal, removeAndHandleNotification }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Notifications));

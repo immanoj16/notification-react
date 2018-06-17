@@ -16,6 +16,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+
+  @media(max-width: 769px) {
+    margin-top: 200px;
+  }
 `;
 
 const Title = styled.h1`
@@ -23,6 +27,10 @@ const Title = styled.h1`
   font-weight: 100;
   font-size: 100px;
   margin-bottom: 20px;
+
+  @media(max-width: 769px) {
+    font-size: 50px;
+  }
 `;
 
 const ErrorMsg = styled.p`

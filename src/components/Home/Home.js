@@ -14,6 +14,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+
+  @media(max-width: 769px) {
+    margin-top: 150px;
+  }
 `;
 
 const Title = styled.p`
@@ -21,6 +25,10 @@ const Title = styled.p`
   font-weight: 100;
   font-size: 100px;
   margin-bottom: 20px;
+
+  @media(max-width: 769px) {
+    font-size: 50px;
+  }
 `;
 
 const Slogan = styled.p`
@@ -29,6 +37,10 @@ const Slogan = styled.p`
   text-align: center;
   line-height: 55px;
   font-weight: 100;
+
+  @media(max-width: 769px) {
+    font-size: 30px;
+  }
 `;
 
 export default Home;
