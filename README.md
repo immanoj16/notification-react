@@ -22,3 +22,5 @@
   ```
   npm run start
   ```
+  
+  * You can visit the deployed one [here](https://react-redux-firebase-df4d1.firebaseapp.com/)
