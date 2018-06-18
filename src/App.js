@@ -8,8 +8,8 @@ import * as userActionCreators from './actions/userActions';
 import { fetchAndHandleNotification } from './actions/notificationActions';
 import { formatUserInfo } from './helpers/utils';
 import { firebaseAuth } from './config/constants';
-import Navbar from './containers/Navbar';
-import Notifications from './containers/Notifications';
+import NavbarContainer from './containers/Navbar/NavbarContainer';
+import Notifications from './containers/Notifciation/NotificationContainer';
 import HomeContainer from './containers/Home/HomeContainer';
 import AuthenticateContainer from './containers/Authenticate/AuthenticateContainer';
 import DashboardContainer from './containers/Dashboard/DashboardContainer';
@@ -48,7 +48,7 @@ class App extends Component {
       ? null
       : <Router>
           <Container>
-            <Navbar isAuthed={this.props.isAuthed} />
+            <NavbarContainer isAuthed={this.props.isAuthed} />
             <Notifications />
             <InnerContainer>
               <Switch>

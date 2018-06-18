@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import notification_white from '../assets/icons/notification-white.png';
-import notification_black from '../assets/icons/notification-black.png';
+import notification_white from '../../assets/icons/notification-white.png';
+import notification_black from '../../assets/icons/notification-black.png';
 
 const NavLinks = ({isAuthed, openModal, src}) => {
   return isAuthed

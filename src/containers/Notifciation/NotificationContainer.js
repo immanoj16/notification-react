@@ -4,12 +4,12 @@ import { withRouter } from 'react-router-dom';
 import { connect, } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import NotificationList from '../components/NotificationList';
-import NotificationHeader from '../components/NotificationHeader';
-import { closeNotificationModal } from '../actions/notificationModalActions';
-import { removeAndHandleNotification } from '../actions/notificationActions';
+import NotificationList from '../../components/Notification/NotificationList';
+import NotificationHeader from '../../components/Notification/NotificationHeader';
+import { closeNotificationModal } from '../../actions/notificationModalActions';
+import { removeAndHandleNotification } from '../../actions/notificationActions';
 
-class Notifications extends Component {
+class NotificationContainer extends Component {
 
   constructor(props) {
     super(props);
@@ -83,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ closeNotificationModal, removeAndHandleNotification }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Notifications));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NotificationContainer));

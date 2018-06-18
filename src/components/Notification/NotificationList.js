@@ -1,8 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Notification from './Notification';
-import { objectToArray } from '../helpers/utils';
-import styled from 'styled-components';
+import { objectToArray } from '../../helpers/utils';
 
 const NotificationList = ({users, notifications, handleRemoveNotification, showNotification}) => {
 

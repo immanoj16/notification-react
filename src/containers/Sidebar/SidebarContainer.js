@@ -91,12 +91,6 @@ const Medium = styled.h1`
   margin: 20px 0;
 `;
 
-const Header = styled.h3`
-  margin: 20px 0;
-  font-weight: 300;
-  font-size: 35px;
-`;
-
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-around;

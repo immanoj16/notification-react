@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import slug from 'slug';
 
 const SingleNotification = ({notification, name}) => {
 
@@ -28,7 +30,7 @@ const SingleNotification = ({notification, name}) => {
     <Container>
       <Title>{title}</Title>
       <InnerContainer>
-        <Para><Bold>{name}</Bold> <Span>{send}</Span></Para>
+        <Para><Bold><LinkStyle to={`/dashboard/${slug(name)}`}>{name}</LinkStyle></Bold> <Span>{send}</Span></Para>
         <Time>{moment(notification.timestamp).fromNow()}</Time>
         <p>{notification.text}</p>
       </InnerContainer>
@@ -51,6 +53,14 @@ const Container = styled.div`
 
   @media (max-width: 769px) {
     margin-top: 250px;
+  }
+`;
+
+const LinkStyle = styled(Link)`
+  color: #34495e;
+  text-decoration: none;
+  &:hover {
+    color: #718daa
   }
 `;
 

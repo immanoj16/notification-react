@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import NotificationHeaderElement from './NotificationHeaderElement';
-import { dateHelper, notificationCountHelper } from '../helpers/utils';
+import { dateHelper, notificationCountHelper } from '../../helpers/utils';
 
 const NotificationHeader = ({ notifications }) => {
 
